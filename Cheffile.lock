@@ -1,0 +1,31 @@
+SITE
+  remote: http://community.opscode.com/api/v1
+  specs:
+    build-essential (1.4.2)
+    yum (2.3.2)
+
+GIT
+  remote: https://github.com/exratione/chef_update
+  ref: v0.0.1
+  sha: 7b0e0a8688a62ee05b09c9ed4bdfeeadfa0919f0
+  specs:
+    chef_update (0.0.1)
+
+PATH
+  remote: custom-cookbooks/protein-shop-requirements
+  specs:
+    protein-shop-requirements (0.0.1)
+      build-essential (>= 0.0.0)
+      yum (>= 0.0.0)
+
+PATH
+  remote: custom-cookbooks/xfce
+  specs:
+    xfce (0.0.1)
+
+DEPENDENCIES
+  build-essential (>= 0)
+  chef_update (>= 0)
+  protein-shop-requirements (>= 0)
+  xfce (>= 0)
+

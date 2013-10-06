@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+#^syntax detection
+
+site 'http://community.opscode.com/api/v1'
+
+cookbook 'build-essential'
+
+cookbook 'chef_update',
+  :git => 'https://github.com/exratione/chef_update',
+  :ref => 'v0.0.1'
+
+cookbook 'protein-shop-requirements',
+  :path => 'custom-cookbooks/protein-shop-requirements'
+
+cookbook 'xfce',
+  :path => 'custom-cookbooks/xfce'
