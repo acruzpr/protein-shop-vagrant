@@ -504,11 +504,11 @@ DRIVER_O = UndoBuffer.o \
 # Fortran language components:
 ######################################################################
 
-
-FC = g77
+#Original was g77, which is a real pain to get installed on modern Unixes.
+#FC = g77
+FC = gfortran
 FFLAGS = -w
 FORTRAN_O = fitsq.o
-
 
 ######################################################################
 # ProteinShop binary:
@@ -528,8 +528,15 @@ PROTEINSHOP_O = $(MISC_O)               \
 
 PROTEINSHOP_DEPS = $(PROTEINSHOP_O)
 
-PROTEINSHOP_LIBS = -lg2c        \
-                   $(FLTK_LIBS) \
+# The old g77 Fortran compiler needs the g2c lib.
+#PROTEINSHOP_LIBS = -lg2c        \
+#                   $(FLTK_LIBS) \
+#                   $(GL_LIBS)   \
+#                   -lpthread    \
+#                   -lm -ldl
+
+# The modern gfortran compiler does not need the g2c lib.
+PROTEINSHOP_LIBS = $(FLTK_LIBS) \
                    $(GL_LIBS)   \
                    -lpthread    \
                    -lm -ldl

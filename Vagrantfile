@@ -66,11 +66,41 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
       # Use VBoxManage to customize the VM.
       #
-      # This is necessary when using GUI, otherwise you'll run into issues
-      # where Vagrant can't talk to the VM and the networking is not working in
-      # the VM. CentOS is apparently more flaky than Ubuntu when it comes to
-      # GUI-related issues.
+      # This fixes some times of issue that occur when using a GUI where Vagrant
+      # fails to establish a connection to the VM and the VM networking fails.
+      # https://github.com/mitchellh/vagrant/issues/391
+      #
+      # CentOS is apparently more flaky in this regard than other distros.
       vb.customize ["modifyvm", :id, "--rtcuseutc", "on"]
+      vb.customize ["modifyvm", :id, "--natnet1", "192.168/16"]
+      # More memory is good.
+      vb.customize ["modifyvm", :id, "--memory", "2048"]
+    end
+  end
+
+  # With 64-bit Ununtu 12.04 as the OS.
+  config.vm.define "ubuntu-precise-x86_64" do |subconfig|
+
+    subconfig.vm.box = "precise64"
+    subconfig.vm.box_url = "http://files.vagrantup.com/precise64.box"
+
+    # Create a private network, which allows host-only access to the machine
+    # using a specific IP.
+    subconfig.vm.network :private_network, ip: "192.168.34.11"
+
+    # Provider-specific configuration so you can fine-tune various
+    # backing providers for Vagrant. These expose provider-specific options.
+    subconfig.vm.provider :virtualbox do |vb|
+      # Don't boot with headless mode
+      vb.gui = true
+
+      # Use VBoxManage to customize the VM.
+      #
+      # This fixes some times of issue that occur when using a GUI where Vagrant
+      # fails to establish a connection to the VM and the VM networking fails.
+      # https://github.com/mitchellh/vagrant/issues/391
+      vb.customize ["modifyvm", :id, "--rtcuseutc", "on"]
+      vb.customize ["modifyvm", :id, "--natnet1", "192.168/16"]
       # More memory is good.
       vb.customize ["modifyvm", :id, "--memory", "2048"]
     end

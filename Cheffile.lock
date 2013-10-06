@@ -1,6 +1,7 @@
 SITE
   remote: http://community.opscode.com/api/v1
   specs:
+    apt (2.2.0)
     build-essential (1.4.2)
     yum (2.3.2)
 
@@ -15,6 +16,7 @@ PATH
   remote: custom-cookbooks/protein-shop-requirements
   specs:
     protein-shop-requirements (0.0.1)
+      apt (>= 0.0.0)
       build-essential (>= 0.0.0)
       yum (>= 0.0.0)
 

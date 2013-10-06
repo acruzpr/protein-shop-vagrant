@@ -10,12 +10,12 @@ tmp
 *sublime-*
 
 # ProteinShop build.
-protein-shop/*.o
-protein-shop/*.so
-protein-shop/Makefile.bak
-protein-shop/core.*
-protein-shop/*ii_files
-protein-shop/ProteinShop
-protein-shop/ProteinGui.h
-protein-shop/ProteinGui.cpp
-protein-shop/src/*.out
+*.o
+*.so
+*ii_files
+*.out
+protein-shop/bin/ProteinShop
+protein-shop/src/Makefile.bak
+protein-shop/src/core.*
+protein-shop/src/ProteinGui.h
+protein-shop/src/ProteinGui.cpp

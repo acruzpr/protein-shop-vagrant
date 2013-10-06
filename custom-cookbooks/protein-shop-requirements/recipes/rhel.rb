@@ -16,9 +16,15 @@ end
 # Fortran 77 compatibility.
 # ---------------------------------------------------------------------
 
+# Provides the Fortran77 compiler g77, used by the original ProteinShop
+# makefile.
+#pkgs = %w{
+#  compat-gcc-34-g77
+#  compat-libf2c-34
+#}
+# This provides the modern Fortran compiler gfortran.
 pkgs = %w{
-  compat-gcc-34-g77
-  compat-libf2c-34
+  gcc-gfortran
 }
 
 pkgs.each do |pkg|

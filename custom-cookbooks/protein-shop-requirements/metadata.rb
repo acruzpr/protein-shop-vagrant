@@ -7,6 +7,7 @@ version           '0.0.1'
 recipe            'protein-shop-requirements', 'Install dependencies.'
 
 depends 'build-essential'
+depends 'apt'
 depends 'yum'
 
 %w{ fedora redhat centos amazon scientific oracle ubuntu debian }.each do |os|

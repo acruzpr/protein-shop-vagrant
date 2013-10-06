@@ -3,6 +3,30 @@
 #
 
 # ---------------------------------------------------------------------
+# Manage network hack to fix potential issue with VM.
+# ---------------------------------------------------------------------
+
+# Virtualbox VMs in a Vagrant environment can be very cranky when using GUI and
+# runlevel changes. The network service may stop working, preventing Vagrant
+# from connecting via ssh and managing shared folders.
+#
+# This is one of the fixes. See:
+# https://github.com/mitchellh/vagrant/issues/391#issuecomment-14039313
+if node[:xfce][:apply_network_hack]
+  if !File.readlines('/etc/rc.local').grep(/ifdown eth0/).any?
+    # Edit /etc/rc.local.
+    # Remove any existing exit 0 line.
+    execute 'sed -i "s/exit 0//g" /etc/rc.local'
+    # Append:
+    #ifdown eth0
+    #sleep 1
+    #ifup eth0
+    #exit 0
+    execute 'printf "ifdown eth0\nsleep 1\nifup eth0\nexit 0" >> /etc/rc.local'
+  end
+end
+
+# ---------------------------------------------------------------------
 # CentOS 5/6 Necessities
 # ---------------------------------------------------------------------
 
@@ -31,26 +55,20 @@ pkgs.each do |pkg|
 end
 
 # ---------------------------------------------------------------------
-# Change runlevel
+# Change runlevel for servers without an installed GUI.
 # ---------------------------------------------------------------------
 
-# The server will have a default runlevel of 3, but we want it to be 5.
+if node[:xfce][:target_is_server]
+  # The server will have a default runlevel of 3, but we want it to be 5.
+  # The effect of changing run level this way is to start up Xfce right now
+  # and to have it start on future boots.
 
-# TODO: this isn't going to work for every RHEL setup. Some are not going to
-# use /etc/inittab.
+  # TODO: this isn't going to work for every RHEL setup. Some are not going to
+  # use /etc/inittab.
 
-# Change /etc/inittab default runlevel from 3 to 5.
-execute 'sed -i s/3/5/g /etc/inittab'
+  # Change /etc/inittab default runlevel from 3 to 5.
+  execute 'sed -i s/3/5/g /etc/inittab'
 
-# Actually change runlevel now.
-#
-# Note that if you are using Virtualbox and Vagrant you may find that you lose
-# networking in the VM when doing this unless you have the following in your
-# Vagrantfile:
-#
-# config.vm.provider :virtualbox do |vb|
-#   vb.customize ["modifyvm", :id, "--rtcuseutc", "on"]
-# end
-#
-# Onwards:
-execute '/sbin/telinit 5'
+  # Actually change runlevel now.
+  execute '/sbin/telinit 5'
+end
