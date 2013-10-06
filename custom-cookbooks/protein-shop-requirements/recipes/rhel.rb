@@ -3,7 +3,7 @@
 #
 
 # ---------------------------------------------------------------------
-# CentOS 5/6 Necessities
+# CentOS 5/6 Additional Repositories
 # ---------------------------------------------------------------------
 
   # Why don't they just give in and add remi and epel repos to the base distro?

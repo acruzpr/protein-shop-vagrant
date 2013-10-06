@@ -17,6 +17,15 @@ Two virtual machines can be configured, Ubuntu 12.04 and CentOS 6.4. Both are
 64-bit, machines, so you will need a 64-bit host machine to make use of this
 project.
 
+Tasks Yet to Be Accomplished
+----------------------------
+
+  * The Ubuntu VM provisioning recipes are not yet complete.
+  * The AMBER energy calculator referenced in protein-shop/lib/input/README is as yet unexplored.
+  * Allowing ProteinShop to specify a path to its configuration file would be nice.
+  * Other tidying up of execution behavior, such as directing or configuring output, would also be good.
+  * Any sort of extensive testing has yet to happen.
+
 This is a Fork of the ProteinShop Code
 --------------------------------------
 
@@ -46,10 +55,19 @@ You can see the options for the machine name by running:
 
 The project has these Vagrant boxes configured:
 
-  * centos-6.4-x86_64 - CentOS 6.4 64-bit
-  * ubuntu-precise-x86_64 - Ubuntu 12.04 64-bit
+  * centos-6.4-x86_64 - CentOS 6.4 64-bit with GUI enabled
+  * ubuntu-precise-x86_64 - Ubuntu 12.04 64-bit with GUI enabled
 
-Note that if you run "vagrant up" without any arguments then both boxes will
+Once launched you can log in to the machines with user `vagrant` and password
+`vagrant`. Running this command in the project directory will also log you in
+as user `vagrant` over SSH:
+
+    vagrant ssh centos-6.4-x86_64
+
+This user has full sudo rights, so you can upgrade to root access from the
+command line with `sudo su` as usual.
+
+Note that if you run `vagrant up` without any arguments then both boxes will
 launch, which is probably not what you want.
 
 What Happens if Vagrant Setup Fails?
@@ -78,25 +96,28 @@ VM under /vagrant. So the ProteinShop installation will be under:
 
     /vagrant/protein-shop
 
-To build the ProteinShop source, log in to the VM as the vagrant user. Then on
-the command line:
+To build the ProteinShop executable, log in to the VM as user `vagrant` with
+password `vagrant`. Then on the command line:
 
     cd /vagrant/protein-shop/src
     make clean
     make
 
-This is a mix of C and Fortran 77 code. The original Fortran compiler used was
-g77, but getting this installed on modern *NIX machines is a real pain, so it
-has been replaced by gfortran.
+The ProteinShop source is a mix of C and Fortran 77 code. The original Fortran
+compiler used was g77, but getting this installed on modern *NIX machines is a
+real pain, so it has been replaced by gfortran.
 
 Using ProteinShop
 -----------------
 
-To get ProteinShop running with sample protein data:
+To get ProteinShop running with sample protein data for Ubiquitin:
 
-    cd  /vagrant/protein-shop/bin
-    wget http://www.rcsb.org/pdb/download/downloadFile.do?fileFormat=pdb&compression=NO&structureId=1ubq
-    ./ProteinShop 1UBQ.pdb
+    cd /vagrant/protein-shop/bin
+    ./ProteinShop /vagrant/protein-shop/data/1UBQ.pdb
+
+Note that you have to run the ProteinShop executable in the same directory as
+the ProteinShop.cfg configuration file, which is presently
+`/vagrant/protein-shop/bin`.
 
 General Pointers for Installing Vagrant, Virtualbox, and Chef
 -------------------------------------------------------------

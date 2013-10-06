@@ -2,7 +2,7 @@ name              'protein-shop-requirements'
 maintainer        'Reason'
 maintainer_email  'reason@exratione.com'
 license           'MIT'
-description       'Install additional necessities for compiling and running ProteinShop.'
+description       'Install the necessities for compiling and running ProteinShop.'
 version           '0.0.1'
 recipe            'protein-shop-requirements', 'Install dependencies.'
 
