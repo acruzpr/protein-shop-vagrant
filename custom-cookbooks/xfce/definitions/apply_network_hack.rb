@@ -10,12 +10,8 @@ define :apply_network_hack do
   # block restarts of the network.
   if node[:platform_family] == 'rhel'
     execute 'chkconfig NetworkManager off'
-  elsif node[:platform_family] == 'debian'
-    execute 'update-rc.d -f NetworkManager remove'
-  else
-    Chef::Log.warn 'Cannot turn off Xfce NetworkManager for this platform.'
+    execute '/etc/init.d/NetworkManager stop'
   end
-  execute '/etc/init.d/NetworkManager stop'
 
   # Bounce the network on entering a runlevel.
   if !File.readlines('/etc/rc.local').grep(/ifdown eth0/).any?
