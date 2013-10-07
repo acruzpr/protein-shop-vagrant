@@ -66,7 +66,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
       # Use VBoxManage to customize the VM.
       #
-      # This fixes some times of issue that occur when using a GUI where Vagrant
+      # This fixes some kinds of issue that occur when using a GUI where Vagrant
       # fails to establish a connection to the VM and the VM networking fails.
       # https://github.com/mitchellh/vagrant/issues/391
       #
@@ -96,7 +96,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
       # Use VBoxManage to customize the VM.
       #
-      # This fixes some times of issue that occur when using a GUI where Vagrant
+      # This fixes some kinds of issue that occur when using a GUI where Vagrant
       # fails to establish a connection to the VM and the VM networking fails.
       # https://github.com/mitchellh/vagrant/issues/391
       vb.customize ["modifyvm", :id, "--rtcuseutc", "on"]

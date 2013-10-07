@@ -97,6 +97,23 @@ retry, rerunning the provisioning if it hasn't yet completed:
     vagrant halt -f centos-6.4-x86_64
     vagrant up --provision centos-6.4-x86_64
 
+ProteinShop Build Dependencies
+------------------------------
+
+For CentOS 6.4:
+
+    sudo yum install gcc-gfortran freeglut-devel fltk-devel fltk-fluid
+
+You will have to [add the remi and epel repositories](http://www.rackspace.com/knowledge_center/article/installing-rhel-epel-repo-on-centos-5x-or-6x)
+to get access to many of the dependencies.
+
+For Ubuntu 12.04:
+
+    sudo apt-get install gfortran binutils-gold freeglut3-dev libfltk1.3-dev fluid
+
+You will have to add the [xorg-edgers PPA](https://launchpad.net/~xorg-edgers/+archive/ppa)
+to your system for some of the dependencies of freeglut3.
+
 Building ProteinShop
 --------------------
 
