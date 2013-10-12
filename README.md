@@ -14,14 +14,12 @@ Vagrant, Virtualbox, Chef, and Librarian-chef.
   * Chef is a provisioning tool for setting software on a machine.
   * Librarian-chef is a package manager for Chef cookbooks.
 
-Two virtual machines can be configured, Ubuntu 12.04 and CentOS 6.4. Both are
-64-bit machines, so you will need a 64-bit host machine to make use of this
-project.
+The virtual machine that can be set up here is a CentOS 6.4 64 bit OS.
 
 Tasks Yet to Be Accomplished
 ----------------------------
 
-  * The Ubuntu VM provisioning recipes are not yet complete. Use the CentOS box.
+  * Setting up an alternative Ubuntu 12.04 VM.
   * The AMBER energy calculator referenced in protein-shop/lib/input/README is as yet unexplored.
   * Allowing ProteinShop to specify a path to its configuration file would be nice.
   * Other tidying up of execution behavior, such as directing or configuring output, would also be good.
@@ -58,16 +56,7 @@ then launch it and run a setup and provisioning process. The download and
 provisioning only has to be done once (unless you destroy the VM and start over,
 and even then Vagrant keeps a copy of the original downloaded base box).
 
-You can see options for the machine names that can be used by running:
-
-    vagrant status
-
-The project makes use of these Vagrant boxes:
-
-  * centos-6.4-x86_64 - CentOS 6.4 64-bit with GUI enabled
-  * ubuntu-precise-x86_64 - Ubuntu 12.04 64-bit with GUI enabled
-
-Once launched you can log in to the machines with user `vagrant` and password
+Once launched you can log in to the machine with user `vagrant` and password
 `vagrant`. Running this command in the project directory will also log you in
 as user `vagrant` over SSH:
 
@@ -75,9 +64,6 @@ as user `vagrant` over SSH:
 
 This user has full sudo rights, so you can upgrade to root access from the
 command line with `sudo su` as usual.
-
-Note that if you run `vagrant up` without any arguments then both boxes will
-launch, which is probably not what you want.
 
 What Happens if Vagrant Setup Fails?
 ------------------------------------
@@ -110,6 +96,9 @@ to get access to many of the dependencies.
 For Ubuntu 12.04:
 
     sudo apt-get install gfortran binutils-gold freeglut3-dev libfltk1.3-dev fluid
+
+Unfortunately this Ubuntu build appears to have issues; it compiles correctly,
+but fails to run. More investigation is needed.
 
 Building ProteinShop
 --------------------

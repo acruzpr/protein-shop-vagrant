@@ -1,6 +1,10 @@
 #
 # Installation for RPM-based platforms.
 #
+# TODO: The CentOS VM specified in the Vagrant script already has GDM installed.
+#
+# So installing GDM is probably going to be necessary for general targets.
+#
 
 # ---------------------------------------------------------------------
 # CentOS 5/6 Necessities

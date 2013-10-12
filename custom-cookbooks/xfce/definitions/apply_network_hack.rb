@@ -4,6 +4,9 @@
 #
 # This is one of the fixes. See:
 # https://github.com/mitchellh/vagrant/issues/391#issuecomment-14039313
+#
+#
+# Probably unnecessary much past Vagrant 1.3.4.
 
 define :apply_network_hack do
   # Turn off the Xfce network manager and get it out of the way, as it will

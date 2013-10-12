@@ -1,6 +1,9 @@
 #
 # Installation for Debian platforms.
 #
+# TODO: This doesn't produce a working setup for Ubuntu: compilation works,
+# but the resulting executable fails with a buffer overflow.
+#
 
 # Ensure an apt-get update runs.
 include_recipe 'apt'

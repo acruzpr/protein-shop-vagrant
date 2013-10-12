@@ -1,20 +1,25 @@
 #
 # Installation for Debian platforms.
 #
+# TODO: This doesn't produce a working setup for Ubuntu: it fails on first
+# reboot.
+#
 
 # Ensure an apt-get update runs, as that is needed for the xfce install.
 include_recipe 'apt'
 
 # ---------------------------------------------------------------------
-# Install Xfce.
+# Install Xfce, a desktop GUI.
 # ---------------------------------------------------------------------
 
 Chef::Log.info "Note that installing xfce4 will probably take some time..."
 
 package 'xfce4'
-# We need a DM package o show the login screen if this is a plain server.
+# We need a DM package to show the login screen if this is a plain server.
 if node[:xfce][:target_is_server]
   package 'lxdm'
+  # Set lxdm to launch Xfce.
+  execute 'sed -i "s/# session=[^ ]*/session=\/usr\/bin\/startxfce4/" /etc/lxdm/lxdm.conf'
 end
 
 # ---------------------------------------------------------------------
