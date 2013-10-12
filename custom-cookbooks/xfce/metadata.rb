@@ -10,6 +10,8 @@ recipe            'xfce', 'Install Xfce.'
   supports os
 end
 
+depends 'apt'
+
 attribute 'xfce/apply_network_hack',
   :display_name => 'Apply network hack?',
   :description => 'Whether or not to employ a hack to avoid a Vagrant/Virtualbox issue that kills networking on the VM.',

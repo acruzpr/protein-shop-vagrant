@@ -37,7 +37,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # some recipes and/or roles.
   config.vm.provision :chef_solo do |chef|
     # Set the log level.
-    #chef.log_level = "debug"
+    chef.log_level = "debug"
     # Set the paths.
     chef.cookbooks_path = "./cookbooks"
     chef.roles_path = "./roles"

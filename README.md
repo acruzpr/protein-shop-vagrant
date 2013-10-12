@@ -111,9 +111,6 @@ For Ubuntu 12.04:
 
     sudo apt-get install gfortran binutils-gold freeglut3-dev libfltk1.3-dev fluid
 
-You will have to add the [xorg-edgers PPA](https://launchpad.net/~xorg-edgers/+archive/ppa)
-to your system for some of the dependencies of freeglut3.
-
 Building ProteinShop
 --------------------
 
